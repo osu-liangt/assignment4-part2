@@ -1,0 +1,47 @@
+body {
+	font-family: 'Helvetica Neue';
+	width: 60em;
+	margin: 0 auto 0 auto;
+}
+
+.badName {
+	color: red;
+}
+
+table {
+	width: 100%;
+}
+
+table td {
+	font-size: 0.9em;
+	vertical-align: text-top;
+}
+
+table,
+table tr,
+table th,
+table td {
+	border: 1px solid silver;
+	border-collapse: collapse;
+}
+
+table th,
+table td {
+	padding: 0.5em 0.75em;
+}
+
+table th {
+	text-align: center;
+}
+
+table thead {
+	background-color: #E9E9E9;
+}
+
+table tbody tr:nth-child(odd) {
+	background-color: #FBFBFB;
+}
+
+table tbody tr:nth-child(even) {
+	background-color: #F5F5F5;
+}
