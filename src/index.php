@@ -19,13 +19,17 @@ header('Content-Type: text/html');
 			$mysqli->connect_error;
 	}
 
-// If video is posted with a non-empty name
+// If video is posted with a non-empty name and positive length
 
 	$badAddVideo = false;
 
 	$noName = count($_POST) > 0 && empty($_POST["name"]);
+	$badLength =
+		count($_POST) > 0 &&
+		!empty($_POST["length"]) &&
+		$_POST["length"] <= 0;
 
-	if (count($_POST) > 0 && $noName == false) {
+	if (count($_POST) > 0 && !$noName && !$badLength) {
 
 		// Prepare statement for data insertion
 
@@ -103,14 +107,19 @@ if (isset($_GET["deleteAllVideos"])) {
 			<p>Name: <input type="text" name="name"></p>
 			<?php
 				if ($noName && !isset($_POST["categoryPick"])) {
-					echo "<p class=\"badName\">Name cannot be empty</p>\n";
+					echo "<p class=\"badInput\">Name cannot be empty</p>\n";
 				}
 				else if ($badAddVideo && $badAddVideoCode == 1062) {
-					echo "<p class=\"badName\">Video name already in database</p>\n";
+					echo "<p class=\"badInput\">Video name already in database</p>\n";
 				}
 			?>
 			<p>Category: <input type="text" name="category"></p>
 			<p>Length: <input type="number" name="length"></p>
+			<?php
+				if ($badLength && !isset($_POST["categoryPick"])) {
+					echo "<p class=\"badInput\"> Length must be positive</p>\n";
+				}
+			?>
 			<p><input type="submit" value="Add"></p>
 		</form>
 	</section>
@@ -153,8 +162,10 @@ if (isset($_GET["deleteAllVideos"])) {
 		}
 		$index = 0;
 		while ($getCatStmt->fetch()) {
-			$categories[$index] = $fetchedCategory;
-			$index++;
+			if (!empty($fetchedCategory)) {
+				$categories[$index] = $fetchedCategory;
+				$index++;
+			}
 		}
 
 		// Generate Table
