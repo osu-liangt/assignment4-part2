@@ -1,3 +1,11 @@
 Start: Sat, 23 May 2015 21:00:00 -0700 
 End: Sat, 23 May 2015 21:27:37 -0700 
 Tasks: start 
+
+Start: Sun, 24 May 2015 03:18:13 -0700 
+End: Sun, 24 May 2015 08:18:13 -0700 
+Tasks: Pretty much done and ready for testing 
+
+Start: Sun, 24 May 2015 08:18:13 -0700 
+End: Sun, 24 May 2015 08:40:14 -0700 
+Tasks: Fixed bugs per testing 
